@@ -1,0 +1,4 @@
+node_modules/
+cloudflared.exe
+__pycache__/
+.env

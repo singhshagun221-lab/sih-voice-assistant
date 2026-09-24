@@ -1,0 +1,841 @@
+/* 
+  frontend/style.css
+  Modern, Accessible, High-Contrast Glassmorphic Theme for
+  MoSJE "Voice Assistant for Livelihood" (SIH26097)
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+:root {
+  --bg-gradient: radial-gradient(circle at 50% 0%, #172554 0%, #0b1120 45%, #030712 100%);
+  --card-bg: rgba(17, 24, 39, 0.75);
+  --card-border: rgba(255, 255, 255, 0.1);
+  --card-hover: rgba(30, 41, 59, 0.85);
+
+  --saffron-primary: #ff8a00;
+  --saffron-glow: rgba(255, 138, 0, 0.35);
+  --emerald-primary: #10b981;
+  --emerald-glow: rgba(16, 185, 129, 0.35);
+  --cyan-primary: #06b6d4;
+  --cyan-glow: rgba(6, 182, 212, 0.3);
+
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --text-dark: #0f172a;
+
+  --badge-gold: #f59e0b;
+  --danger: #ef4444;
+
+  --radius-xl: 20px;
+  --radius-lg: 14px;
+  --radius-md: 10px;
+  --shadow-glow: 0 10px 30px -10px rgba(255, 138, 0, 0.25);
+  --shadow-card: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+body {
+  font-family: 'Plus Jakarta Sans', 'Noto Sans Devanagari', -apple-system, sans-serif;
+  background: var(--bg-gradient);
+  background-attachment: fixed;
+  color: var(--text-main);
+  min-height: 100vh;
+  line-height: 1.5;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+}
+
+/* -------------------------------------------------------------------------
+   HEADER & BRANDING
+-------------------------------------------------------------------------- */
+.header-nav {
+  padding: 1rem 1.5rem;
+  background: rgba(11, 17, 32, 0.85);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--card-border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.brand-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.emblem-icon {
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, #ff9933 0%, #ffffff 50%, #138808 100%);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(255, 153, 51, 0.3);
+  font-size: 1.4rem;
+}
+
+.brand-text h1 {
+  font-family: 'Outfit', sans-serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.sih-badge {
+  background: rgba(255, 138, 0, 0.2);
+  color: #ffaa44;
+  border: 1px solid rgba(255, 138, 0, 0.4);
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 2px 8px;
+  border-radius: 999px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.brand-text p {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.live-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  border-radius: 999px;
+  color: #34d399;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.live-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #10b981;
+  border-radius: 50%;
+  animation: pulse-dot 1.8s infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(1.3); }
+}
+
+/* -------------------------------------------------------------------------
+   MAIN CONTAINER & HERO
+-------------------------------------------------------------------------- */
+.main-wrapper {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 3rem 1rem;
+  width: 100%;
+  flex: 1;
+}
+
+.hero-banner {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.hero-subtitle-hi {
+  font-family: 'Noto Sans Devanagari', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 0.35rem;
+}
+
+.hero-tagline {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  max-width: 650px;
+  margin: 0 auto;
+}
+
+/* -------------------------------------------------------------------------
+   ZERO-TYPING AUDIO INTERFACE (MIC + CANVAS)
+-------------------------------------------------------------------------- */
+.voice-hero-card {
+  background: var(--card-bg);
+  backdrop-filter: blur(24px);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-xl);
+  padding: 2.2rem 1.5rem;
+  box-shadow: var(--shadow-card);
+  text-align: center;
+  margin-bottom: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.voice-hero-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 400px;
+  height: 250px;
+  background: radial-gradient(circle, rgba(255, 138, 0, 0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.mic-wrapper {
+  position: relative;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  margin: 1rem 0;
+}
+
+.mic-pulse-ring {
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  border-radius: 50%;
+  background: var(--saffron-glow);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+.mic-pulse-ring.active {
+  animation: pulse-ring 1.8s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.9); opacity: 0.8; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+.mic-button {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: linear-gradient(145deg, #ff8a00, #ea580c);
+  border: 4px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 10px 30px rgba(234, 88, 12, 0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: relative;
+  z-index: 10;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s;
+  outline: none;
+}
+
+.mic-button:hover {
+  transform: scale(1.06);
+  box-shadow: 0 12px 35px rgba(234, 88, 12, 0.6);
+}
+
+.mic-button:active {
+  transform: scale(0.96);
+}
+
+.mic-button.recording {
+  background: linear-gradient(145deg, #ef4444, #b91c1c);
+  box-shadow: 0 10px 35px rgba(239, 68, 68, 0.6);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.mic-button.speaking {
+  background: linear-gradient(145deg, #10b981, #059669);
+  box-shadow: 0 10px 35px rgba(16, 185, 129, 0.6);
+}
+
+.mic-icon {
+  width: 44px;
+  height: 44px;
+  fill: #ffffff;
+  transition: transform 0.2s ease;
+}
+
+/* REAL-TIME CANVAS AUDIO VISUALIZER */
+.waveform-canvas-container {
+  width: 100%;
+  max-width: 550px;
+  height: 60px;
+  margin: 0.5rem auto 1rem auto;
+  border-radius: var(--radius-md);
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  position: relative;
+  overflow: hidden;
+}
+
+#waveformCanvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* INSTANT STATUS INDICATOR */
+.status-indicator-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 1.2rem;
+  background: rgba(30, 41, 59, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  margin-bottom: 0.75rem;
+  transition: all 0.3s ease;
+}
+
+.status-indicator-badge.ready {
+  color: #94a3b8;
+}
+
+.status-indicator-badge.listening {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: rgba(239, 68, 68, 0.4);
+  color: #fca5a5;
+}
+
+.status-indicator-badge.processing {
+  background: rgba(245, 158, 11, 0.2);
+  border-color: rgba(245, 158, 11, 0.4);
+  color: #fde047;
+}
+
+.status-indicator-badge.speaking {
+  background: rgba(16, 185, 129, 0.2);
+  border-color: rgba(16, 185, 129, 0.4);
+  color: #6ee7b7;
+}
+
+/* LIVE TRANSCRIPT BUBBLE */
+.live-transcript-box {
+  min-height: 48px;
+  max-width: 650px;
+  margin: 0.75rem auto;
+  padding: 0.75rem 1.25rem;
+  background: rgba(15, 23, 42, 0.75);
+  border: 1px dashed rgba(255, 255, 255, 0.15);
+  border-radius: var(--radius-lg);
+  font-family: 'Noto Sans Devanagari', sans-serif;
+  font-size: 1.05rem;
+  color: #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  transition: all 0.25s ease;
+}
+
+.live-transcript-box.empty {
+  font-style: italic;
+  color: #64748b;
+  font-size: 0.92rem;
+}
+
+/* QUICK DEMO PILLS FOR JUDGES */
+.demo-pill-section {
+  margin-top: 1.25rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 1.2rem;
+}
+
+.demo-title {
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-muted);
+  margin-bottom: 0.65rem;
+}
+
+.pill-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+}
+
+.demo-pill {
+  background: rgba(30, 41, 59, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #e2e8f0;
+  padding: 0.45rem 1rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.demo-pill:hover {
+  background: rgba(255, 138, 0, 0.2);
+  border-color: rgba(255, 138, 0, 0.4);
+  color: #ffedd5;
+  transform: translateY(-2px);
+}
+
+/* AUDIO PLAYBACK CONTROLS */
+.audio-controls-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.btn-secondary {
+  background: rgba(30, 41, 59, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #f1f5f9;
+  padding: 0.45rem 1rem;
+  border-radius: var(--radius-md);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.btn-secondary:hover {
+  background: rgba(51, 65, 85, 0.9);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+/* -------------------------------------------------------------------------
+   OUTPUT DISPLAY: 3 DYNAMIC CARDS
+-------------------------------------------------------------------------- */
+.results-section {
+  display: none;
+  animation: fadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.results-section.visible {
+  display: block;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.spoken-feedback-banner {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.15) 0%, rgba(6, 182, 212, 0.1) 100%);
+  border: 1px solid rgba(16, 185, 129, 0.35);
+  border-radius: var(--radius-lg);
+  padding: 1.1rem 1.35rem;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.spoken-feedback-banner .speaker-icon {
+  font-size: 1.6rem;
+  line-height: 1;
+}
+
+.spoken-feedback-banner .speech-content {
+  flex: 1;
+}
+
+.spoken-feedback-banner .speech-title {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #34d399;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.25rem;
+}
+
+.spoken-feedback-banner .speech-text {
+  font-family: 'Noto Sans Devanagari', sans-serif;
+  font-size: 1rem;
+  color: #f8fafc;
+  line-height: 1.6;
+}
+
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.35rem;
+}
+
+/* CARD 1: SKILL & NSQF */
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-xl);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-card);
+  transition: transform 0.25s ease, border-color 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 255, 255, 0.22);
+}
+
+.card-top-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+}
+
+.card-title-group {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.card-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+}
+
+.card-icon.skill {
+  background: rgba(245, 158, 11, 0.2);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.35);
+}
+
+.card-icon.scheme {
+  background: rgba(16, 185, 129, 0.2);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.35);
+}
+
+.card-icon.center {
+  background: rgba(6, 182, 212, 0.2);
+  color: #38bdf8;
+  border: 1px solid rgba(6, 182, 212, 0.35);
+}
+
+.card-heading {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.card-subheading {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+/* BADGES */
+.nsqf-badge {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+  color: #000;
+  font-weight: 800;
+  font-size: 0.75rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  box-shadow: 0 4px 10px rgba(245, 158, 11, 0.3);
+}
+
+.scheme-highlight-badge {
+  background: rgba(16, 185, 129, 0.2);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.4);
+  font-weight: 700;
+  font-size: 0.78rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+}
+
+.seat-badge {
+  background: rgba(56, 189, 248, 0.15);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  font-weight: 700;
+  font-size: 0.78rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+}
+
+/* CARD DETAILS */
+.trade-name-display {
+  font-family: 'Noto Sans Devanagari', sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #fbbf24;
+  margin-bottom: 0.75rem;
+}
+
+.meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.meta-chip {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.25rem 0.65rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  color: #cbd5e1;
+}
+
+.curriculum-list {
+  list-style: none;
+  margin: 0.5rem 0 1rem 0;
+  padding: 0;
+}
+
+.curriculum-list li {
+  font-family: 'Noto Sans Devanagari', sans-serif;
+  font-size: 0.88rem;
+  color: #cbd5e1;
+  margin-bottom: 0.4rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.curriculum-list li::before {
+  content: '✓';
+  color: var(--emerald-primary);
+  font-weight: 800;
+}
+
+/* SCHEME GRANT BOX (GREEN HIGHLIGHT) */
+.grant-hero-box {
+  background: linear-gradient(135deg, rgba(16, 185, 129, 0.2) 0%, rgba(5, 150, 105, 0.12) 100%);
+  border: 1.5px solid #10b981;
+  border-radius: var(--radius-lg);
+  padding: 1.15rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 8px 20px rgba(16, 185, 129, 0.15);
+}
+
+.grant-title {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #34d399;
+  font-weight: 700;
+  margin-bottom: 0.35rem;
+}
+
+.grant-amount {
+  font-size: 1.55rem;
+  font-weight: 800;
+  color: #ffffff;
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.grant-amount small {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #a7f3d0;
+}
+
+.grant-description {
+  font-family: 'Noto Sans Devanagari', sans-serif;
+  font-size: 0.88rem;
+  color: #e2e8f0;
+  margin-top: 0.5rem;
+  line-height: 1.5;
+}
+
+.scheme-perks-list {
+  list-style: none;
+  margin-bottom: 1rem;
+}
+
+.scheme-perks-list li {
+  font-size: 0.85rem;
+  color: #cbd5e1;
+  margin-bottom: 0.45rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.scheme-perks-list li span.bullet {
+  color: #38bdf8;
+  font-weight: bold;
+}
+
+/* CENTER CARD & CALL BUTTON */
+.center-name {
+  font-family: 'Noto Sans Devanagari', sans-serif;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #38bdf8;
+  margin-bottom: 0.35rem;
+}
+
+.center-address {
+  font-family: 'Noto Sans Devanagari', sans-serif;
+  font-size: 0.88rem;
+  color: #cbd5e1;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.center-meta-box {
+  background: rgba(15, 23, 42, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-md);
+  padding: 0.85rem;
+  margin-bottom: 1.25rem;
+}
+
+.center-meta-item {
+  font-size: 0.82rem;
+  color: #94a3b8;
+  margin-bottom: 0.35rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.center-meta-item strong {
+  color: #f1f5f9;
+}
+
+.call-action-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.65rem;
+  width: 100%;
+  padding: 0.95rem 1.25rem;
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: #ffffff;
+  border-radius: var(--radius-lg);
+  font-family: 'Noto Sans Devanagari', 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 10px 25px rgba(16, 185, 129, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  margin-top: auto;
+}
+
+.call-action-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(16, 185, 129, 0.5);
+}
+
+.call-action-btn:active {
+  transform: scale(0.98);
+}
+
+/* -------------------------------------------------------------------------
+   FOOTER
+-------------------------------------------------------------------------- */
+.footer {
+  margin-top: auto;
+  padding: 1.5rem;
+  text-align: center;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(11, 17, 32, 0.8);
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.footer-links {
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: center;
+  gap: 1.25rem;
+}
+
+.footer-links a {
+  color: var(--saffron-primary);
+  text-decoration: none;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+/* -------------------------------------------------------------------------
+   RESPONSIVE DESIGN (Mobile Friendly)
+-------------------------------------------------------------------------- */
+@media (max-width: 768px) {
+  .header-nav {
+    padding: 0.75rem 1rem;
+  }
+  .brand-text h1 {
+    font-size: 1rem;
+  }
+  .hero-subtitle-hi {
+    font-size: 1.2rem;
+  }
+  .mic-button {
+    width: 86px;
+    height: 86px;
+  }
+  .cards-grid {
+    grid-template-columns: 1fr;
+  }
+  .voice-hero-card {
+    padding: 1.5rem 1rem;
+  }
+}

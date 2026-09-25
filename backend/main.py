@@ -52,10 +52,18 @@ app.add_middleware(
 # PYDANTIC DATA MODELS
 # ----------------------------------------------------------------------------
 class VoiceQueryRequest(BaseModel):
-    speech_text: str = Field(
-        ...,
+    speech_text: Optional[str] = Field(
+        default=None,
         description="Vernacular speech transcript recognized from browser microphone in Hindi/Hinglish",
         examples=["Mera naam Raju hai, main badhai ka kaam karta hoon aur Prayagraj mein rehta hoon"]
+    )
+    message: Optional[str] = Field(
+        default=None,
+        description="Alternative chat message text field"
+    )
+    query: Optional[str] = Field(
+        default=None,
+        description="Alternative query text field"
     )
     user_district: Optional[str] = Field(
         default=None,
@@ -304,6 +312,8 @@ def healthcheck():
 
 
 @app.post("/api/process-voice", response_model=ProcessVoiceResponse)
+@app.post("/chat", response_model=ProcessVoiceResponse)
+@app.post("/api/chat", response_model=ProcessVoiceResponse)
 def process_voice_query(request: VoiceQueryRequest):
     """
     Core Voice Processing API:
@@ -313,9 +323,10 @@ def process_voice_query(request: VoiceQueryRequest):
     4. Finds closest localized government training center with seat inventory.
     5. Returns empathetic Devanagari spoken string for instant browser TTS playback.
     """
-    raw_transcript = request.speech_text.strip()
+    input_text = request.speech_text or request.message or request.query or ""
+    raw_transcript = input_text.strip()
     if not raw_transcript:
-        raise HTTPException(status_code=400, detail="Voice transcript cannot be empty.")
+        raise HTTPException(status_code=400, detail="Voice transcript or chat query cannot be empty.")
 
     # 1. NLP Extraction
     detected_name = extract_user_name(raw_transcript)

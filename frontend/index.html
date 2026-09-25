@@ -3,275 +3,904 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Voice Assistant for Livelihood - PM-AJAY (GIA Component) MoSJE | PS 26097</title>
-  <meta name="description" content="AI Voice Assistant for Livelihood - PM-AJAY (GIA Component) MoSJE. अनुसूचित जाति (SC) कामगारों और कारीगरों के लिए बोलकर चलने वाला आजीविका और कौशल सहायक।">
+  <title>PM-AJAY Kaushal Setu AI | MoSJE Prototype - SIH PS 26097</title>
+  <meta name="description" content="Executive-grade AI Voice Skilling & GIA Grant Assistant for Ministry of Social Justice and Empowerment (MoSJE). Vernacular speech-to-scheme intelligence platform for unorganized artisans and marginalized laborers.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎙️</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏛️</text></svg>">
 </head>
-<body>
+<body class="mode-beneficiary">
 
-  <!-- Top Navigation Header -->
-  <header class="header-nav" role="banner">
-    <div class="nav-container">
-      <div class="brand-wrapper">
-        <div class="emblem-icon" aria-hidden="true">🏛️</div>
-        <div class="brand-text">
-          <h1>
-            AI Voice Assistant for Livelihood
-            <span class="sih-badge">SIH PS 26097</span>
-          </h1>
-          <p>PM-AJAY (GIA Component) MoSJE · सामाजिक न्याय एवं अधिकारिता मंत्रालय</p>
+  <!-- =========================================================================
+       1. TOP EXECUTIVE NAVIGATION BAR
+       ========================================================================= -->
+  <header class="gov-topbar" role="banner">
+    <div class="topbar-container">
+      
+      <!-- Brand & Project Identity -->
+      <div class="gov-brand-cluster">
+        <div class="emblem-crest" aria-hidden="true" title="Government of India - MoSJE">
+          <span class="crest-symbol">🏛️</span>
+          <span class="crest-glow"></span>
+        </div>
+        <div class="brand-text-block">
+          <div class="brand-row">
+            <h1 class="portal-title">PM-AJAY Kaushal Setu AI <span class="title-separator">|</span> <span class="title-sub">MoSJE Prototype</span></h1>
+            <span class="sih-tag">SIH PS 26097</span>
+          </div>
+          <p class="portal-desc">
+            National Skilling Intelligence & Livelihood Command Platform · Ministry of Social Justice and Empowerment, GoI
+          </p>
         </div>
       </div>
 
-      <div class="header-actions">
-        <span class="live-badge" id="systemStatusBadge" title="सिस्टम ऑनलाइन है">
-          <span class="live-dot" aria-hidden="true"></span>
-          <span>लाइव (Online)</span>
-        </span>
+      <!-- Center Status Badge -->
+      <div class="topbar-center-meta">
+        <div class="sandbox-status-badge" id="systemStatusBadge" title="FastAPI NLP & Rule Engine Connected">
+          <span class="pulse-emerald-dot" aria-hidden="true"></span>
+          <span class="status-label-bold">Live Render Sandbox</span>
+          <span class="status-latency-tag">⚡ 32ms</span>
+        </div>
+        <span class="nsqf-live-indicator" title="NSQF 2026 Certified Knowledge Base">🇮🇳 NSQF & GIA Aligned</span>
       </div>
+
+      <!-- Right Mode Toggle Switcher -->
+      <div class="topbar-controls">
+        <div class="mode-toggle-segmented" role="radiogroup" aria-label="Dashboard Operating Mode">
+          <button type="button" class="mode-toggle-btn active" id="btnModeCitizen" role="radio" aria-checked="true">
+            <span class="toggle-icon">👤</span>
+            <span class="toggle-text">Beneficiary / Citizen</span>
+          </button>
+          <button type="button" class="mode-toggle-btn" id="btnModeAdmin" role="radio" aria-checked="false">
+            <span class="toggle-icon">🏢</span>
+            <span class="toggle-text">Training Center / Admin Officer</span>
+          </button>
+        </div>
+
+        <button type="button" class="audio-mute-toggle" id="ttsAudioMuteBtn" title="Toggle Spoken Speech Audio (TTS)">
+          <span id="ttsAudioIcon">🔊</span>
+          <span class="btn-tooltip">Voice Output</span>
+        </button>
+      </div>
+
     </div>
   </header>
 
-  <!-- Main Content Wrapper -->
-  <main class="main-wrapper" role="main">
+  <!-- =========================================================================
+       MAIN DASHBOARD CONTAINER
+       ========================================================================= -->
+  <main class="dashboard-shell" role="main">
 
-    <!-- Hero Title Section -->
-    <section class="hero-banner" aria-labelledby="heroTitle">
-      <h2 id="heroTitle" class="hero-subtitle-hi">"बस माइक दबाएं और अपनी भाषा में बोलें"</h2>
-      <p class="hero-tagline">
-        चर्मकार (Leather Work), बुनकर (Handloom Weaving), राजमिस्त्री (Masonry) व अन्य कारीगर—अपनी बोली (हिंदी/भोजपुरी) में बोलें और PM-AJAY (GIA Component) MoSJE के तहत ₹50,000 टूलकिट अनुदान व प्रशिक्षण पाएं।
-      </p>
-    </section>
+    <!-- =======================================================================
+         2. LIVE METRICS RIBBON (4 RESPONSIVE KPI CARDS)
+         ======================================================================= -->
+    <section class="metrics-ribbon" aria-label="Executive Intelligence KPIs">
+      <div class="metrics-grid">
 
-    <!-- Zero-Typing Voice Interaction Section -->
-    <section class="voice-hero-card" aria-label="ध्वनि सहायक इंटरफ़ेस">
-      
-      <!-- Instant Status Badge Indicator -->
-      <div>
-        <div id="statusBadge" class="status-indicator-badge ready" role="status" aria-live="polite">
-          <span id="statusIcon">🎙️</span>
-          <span id="statusText">माइक दबाएं और बोलें (Tap to Speak)</span>
-        </div>
-      </div>
-
-      <!-- Prominent Pulsing Mic Button -->
-      <div class="mic-wrapper">
-        <div id="micPulseRing" class="mic-pulse-ring" aria-hidden="true"></div>
-        <button id="micBtn" class="mic-button" aria-label="माइक चालू करें और बोलें" title="बोलने के लिए दबाएं">
-          <svg class="mic-icon" id="micSvgIcon" viewBox="0 0 24 24">
-            <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
-            <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
-          </svg>
-        </button>
-      </div>
-
-      <!-- Real-Time Audio Waveform Canvas Visualizer -->
-      <div class="waveform-canvas-container" title="ऑडियो वेवफॉर्म विजुलाइजर">
-        <canvas id="waveformCanvas"></canvas>
-      </div>
-
-      <!-- Recognized Speech Transcript Display -->
-      <div id="transcriptBox" class="live-transcript-box empty" aria-live="polite">
-        "उदाहरण: मेरा नाम राजू है, मैं प्रयागराज में चर्मकार लेदर वर्क का काम करता हूँ"
-      </div>
-
-      <!-- Audio Action Bar (Listen Again / Stop Speech) -->
-      <div class="audio-controls-bar" id="audioControlsBar" style="display: none;">
-        <button id="replaySpeechBtn" class="btn-secondary" title="पुनः सुनें">
-          <span>🔊</span>
-          <span>फिर से सुनें (Listen Again)</span>
-        </button>
-        <button id="stopSpeechBtn" class="btn-secondary" title="आवाज रोकें">
-          <span>⏹️</span>
-          <span>रोकें (Stop)</span>
-        </button>
-      </div>
-
-      <!-- Demo Quick-Click Fallback Pills for Judges -->
-      <div class="demo-pill-section" aria-label="त्वरित डेमो विकल्प">
-        <p class="demo-title">जज डेमो टेस्ट (Quick Pitch Demo - Click to Test Instantly):</p>
-        <div class="pill-container">
-          <button class="demo-pill" data-speech="मेरा नाम राजू है, मैं प्रयागराज में चर्मकार लेदर वर्क का काम करता हूँ, मुझे सरकारी योजना और टूलकिट चाहिए">
-            <span>👞</span>
-            <span>Prayagraj - Charmakar (Leather Work)</span>
-          </button>
-          <button class="demo-pill" data-speech="हमार नाम रमेश बा, हम बनारस में बुनकर हथकरघा के काम करीला, पीएम अजय योजना के जानकारी चाही">
-            <span>🧵</span>
-            <span>Varanasi - Bunkar (Handloom Weaving)</span>
-          </button>
-          <button class="demo-pill" data-speech="नमस्ते, मैं लखनऊ में राजमिस्त्री का काम करता हूँ, मुझे पीएम अजय योजना और कौशल ट्रेनिंग चाहिए">
-            <span>🧱</span>
-            <span>Lucknow - Rajmistri (Masonry)</span>
-          </button>
-        </div>
-      </div>
-
-    </section>
-
-    <!-- Dynamic Output Display: 3 Interactive Cards -->
-    <section id="resultsSection" class="results-section" aria-label="कौशल व योजना परिणाम">
-      
-      <!-- Spoken Response Hindi Banner -->
-      <div class="spoken-feedback-banner">
-        <div class="speaker-icon" aria-hidden="true">📢</div>
-        <div class="speech-content">
-          <div class="speech-title">आवाज में जवाब (Audio Guidance Provided):</div>
-          <p id="spokenTranscriptOutput" class="speech-text">
-            लोड हो रहा है...
-          </p>
-        </div>
-      </div>
-
-      <!-- Grid of 3 Cards -->
-      <div class="cards-grid">
-
-        <!-- CARD 1: IDENTIFIED SKILL & NSQF BADGE -->
-        <article class="card" id="skillCard" aria-labelledby="skillHeading">
-          <div class="card-top-header">
-            <div class="card-title-group">
-              <div class="card-icon skill">🛠️</div>
-              <div>
-                <h3 id="skillHeading" class="card-heading">पहचाना गया कौशल</h3>
-                <span class="card-subheading">NSQF Skill Module</span>
-              </div>
+        <!-- KPI Card 1: Beneficiaries Assessed -->
+        <article class="metric-card metric-indigo">
+          <div class="metric-card-inner">
+            <div class="metric-header-row">
+              <span class="metric-kicker">Intake Registry</span>
+              <span class="metric-icon-bubble">👥</span>
             </div>
-            <span id="nsqfBadge" class="nsqf-badge">NSQF Level 4</span>
-          </div>
-
-          <div id="skillTradeName" class="trade-name-display">
-            चर्मकार / चमड़ा शिल्प व जूता निर्माण
-          </div>
-
-          <div class="meta-row">
-            <span id="qpCodeBadge" class="meta-chip">QP Code: LSS/Q2301</span>
-            <span id="durationBadge" class="meta-chip">अवधि: 240 घंटे</span>
-            <span id="stipendBadge" class="meta-chip">दैनिक भत्ता: ₹500/दिन</span>
-          </div>
-
-          <div style="font-size: 0.85rem; font-weight: 600; color: #94a3b8; margin-top: 0.5rem;">
-            प्रशिक्षण में क्या सीखेंगे:
-          </div>
-          <ul id="curriculumList" class="curriculum-list">
-            <li>चमड़ा ग्रेडिंग, सटीक कटिंग, स्टिचिंग व फिनिशिंग तकनीक</li>
-            <li>आधुनिक फुटवियर, सैंडल, लेदर बैग व बेल्ट निर्माण</li>
-            <li>इलेक्ट्रिक लेदर सीविंग व सोल पेस्टिंग मशीन का उपयोग</li>
-          </ul>
-
-          <div style="margin-top: auto; padding-top: 0.75rem; border-top: 1px solid rgba(255,255,255,0.08); font-size: 0.8rem; color: #a7f3d0;">
-            🎁 टूलकिट: <strong id="toolkitName">आधुनिक चर्मकार टूलकिट एवं इलेक्ट्रिक लेदर सिलाई मशीन</strong>
+            <div class="metric-primary-value" id="kpiBeneficiaries">1,248</div>
+            <div class="metric-title">Beneficiaries Assessed</div>
+            <div class="metric-subtext">
+              <span class="trend-up">↑ +14.2%</span> MoM · 89% Vernacular Voice
+            </div>
+            <div class="metric-accent-bar" style="--accent-fill: 78%;"></div>
           </div>
         </article>
 
-        <!-- CARD 2: ELIGIBLE GOVERNMENT SCHEME (PM-AJAY GIA COMPONENT HIGHLIGHT) -->
-        <article class="card" id="schemeCard" aria-labelledby="schemeHeading">
-          <div class="card-top-header">
-            <div class="card-title-group">
-              <div class="card-icon scheme">📜</div>
-              <div>
-                <h3 id="schemeHeading" class="card-heading">PM-AJAY (GIA घटक)</h3>
-                <span class="card-subheading">Grants-in-Aid Component · MoSJE</span>
-              </div>
+        <!-- KPI Card 2: Active Trades -->
+        <article class="metric-card metric-amber">
+          <div class="metric-card-inner">
+            <div class="metric-header-row">
+              <span class="metric-kicker">Qualification Pack</span>
+              <span class="metric-icon-bubble">🛠️</span>
             </div>
-            <span class="scheme-highlight-badge">100% GIA अनुदान</span>
-          </div>
-
-          <!-- Highlighted Green Grant Box -->
-          <div class="grant-hero-box">
-            <div class="grant-title">PM-AJAY (GIA Component) MoSJE</div>
-            <div class="grant-amount">
-              ₹50,000 <small>तक सहायता अनुदान (Grant-in-Aid)</small>
+            <div class="metric-primary-value">18 Active Trades</div>
+            <div class="metric-title">NSQF Aligned Modules</div>
+            <div class="metric-subtext">
+              <span class="badge-trade-tag">Tailoring</span>
+              <span class="badge-trade-tag">Carpentry</span>
+              <span class="badge-trade-tag">Masonry</span>
+              <span class="badge-trade-tag">Solar</span>
             </div>
-            <p id="grantDescText" class="grant-description">
-              अनुसूचित जाति (SC) कारीगरों हेतु सूक्ष्म उद्यम टूलकिट व कार्यशील पूंजी हेतु ₹50,000 तक का 100% सहायता अनुदान (शून्य ऋण) + कौशल प्रशिक्षण व स्टाइपेंड।
-            </p>
-          </div>
-
-          <!-- Scheme Perks -->
-          <ul class="scheme-perks-list">
-            <li>
-              <span class="bullet">✓</span>
-              <span><strong>PM-AJAY GIA टूलकिट:</strong> ₹50,000 तक 100% सहायता अनुदान (शून्य ऋण भार)</span>
-            </li>
-            <li>
-              <span class="bullet">✓</span>
-              <span><strong>प्रशिक्षण स्टाइपेंड:</strong> ₹1,500 से ₹3,000/माह भोजन व यात्रा भत्ता</span>
-            </li>
-            <li>
-              <span class="bullet">✓</span>
-              <span><strong>NSQF प्रमाण पत्र:</strong> 100% निःशुल्क सरकारी कौशल प्रशिक्षण व टूलकिट</span>
-            </li>
-            <li>
-              <span class="bullet">✓</span>
-              <span><strong>PM-विश्वकर्मा लाभ:</strong> ₹15,000 टूलकिट वाउचर + ₹3 लाख तक 5% रियायती ऋण</span>
-            </li>
-          </ul>
-
-          <div style="font-size: 0.8rem; color: #94a3b8; margin-top: auto;">
-            <span>आवश्यक कागजात: आधार कार्ड (बैंक लिंक), जाति प्रमाण पत्र (SC), बैंक पासबुक, आय प्रमाण पत्र</span>
+            <div class="metric-accent-bar" style="--accent-fill: 100%;"></div>
           </div>
         </article>
 
-        <!-- CARD 3: NEAREST TRAINING CENTER + CLICKABLE CALL BUTTON -->
-        <article class="card" id="centerCard" aria-labelledby="centerHeading">
-          <div class="card-top-header">
-            <div class="card-title-group">
-              <div class="card-icon center">📍</div>
-              <div>
-                <h3 id="centerHeading" class="card-heading">नजदीकी कौशल केंद्र</h3>
-                <span class="card-subheading">Verified Physical Center</span>
-              </div>
+        <!-- KPI Card 3: Direct Scheme Fitment Rate -->
+        <article class="metric-card metric-emerald">
+          <div class="metric-card-inner">
+            <div class="metric-header-row">
+              <span class="metric-kicker">NLP Intent Precision</span>
+              <span class="metric-icon-bubble">🎯</span>
             </div>
-            <span id="centerSeatBadge" class="seat-badge">
-              <span class="live-dot" style="background:#38bdf8;"></span>
-              <span id="seatsAvailableText">35 सीटें खाली</span>
-            </span>
+            <div class="metric-primary-value">98.2%</div>
+            <div class="metric-title">Direct Scheme Fitment Rate</div>
+            <div class="metric-subtext">
+              <span class="trend-up">★ High Accuracy</span> · PM-AJAY & Vishwakarma
+            </div>
+            <div class="metric-accent-bar" style="--accent-fill: 98%;"></div>
           </div>
+        </article>
 
-          <div id="centerNameDisplay" class="center-name">
-            प्रधानमंत्री कौशल केंद्र (PMKK) - प्रयागराज
+        <!-- KPI Card 4: Average PM-AJAY Stipend Tier -->
+        <article class="metric-card metric-cyan">
+          <div class="metric-card-inner">
+            <div class="metric-header-row">
+              <span class="metric-kicker">Direct Benefit Transfer</span>
+              <span class="metric-icon-bubble">💰</span>
+            </div>
+            <div class="metric-primary-value">₹500 / Day</div>
+            <div class="metric-title">Average PM-AJAY Stipend Tier</div>
+            <div class="metric-subtext">
+              100% GIA Grant up to <strong class="highlight-cyan">₹50,000</strong> Toolkit
+            </div>
+            <div class="metric-accent-bar" style="--accent-fill: 85%;"></div>
           </div>
-
-          <p id="centerAddressDisplay" class="center-address">
-            प्लॉट संख्या 42, तेलियरगंज रोड, निकट एमएनएनआईटी गेट, प्रयागराज, उत्तर प्रदेश - 211004
-          </p>
-
-          <div class="center-meta-box">
-            <div class="center-meta-item">
-              <span>नोडल संपर्क:</span>
-              <strong id="contactPersonDisplay">श्री विमलेश त्रिपाठी</strong>
-            </div>
-            <div class="center-meta-item">
-              <span>दूरी संकेत:</span>
-              <strong id="distanceHintDisplay">बस स्टैंड से 3.5 किमी</strong>
-            </div>
-            <div class="center-meta-item">
-              <span>नया बैच:</span>
-              <strong id="nextBatchDisplay" style="color: #34d399;">10 अक्टूबर 2026</strong>
-            </div>
-          </div>
-
-          <!-- Prominent Clickable Call Button -->
-          <a id="callCenterBtn" href="tel:05322408912" class="call-action-btn" title="केंद्र पर सीधे कॉल करें">
-            <span>📞</span>
-            <span>सीधे केंद्र पर कॉल करें (Call Now)</span>
-          </a>
         </article>
 
       </div>
     </section>
+
+    <!-- =======================================================================
+         ADMIN INTELLIGENCE BAR (Visible when Officer Mode is active)
+         ======================================================================= -->
+    <section class="admin-overview-panel" id="adminOverviewPanel" style="display: none;" aria-label="Administrative Oversight">
+      <div class="admin-panel-card">
+        <div class="admin-panel-header">
+          <div class="admin-title-group">
+            <span class="admin-badge">Officer Command Desk</span>
+            <h3>Regional Training Centers & Vacancy Real-Time Matrix</h3>
+            <p>MoSJE Skill Hubs monitoring district-level applicant pipeline & GIA Grant allocations</p>
+          </div>
+          <button type="button" class="btn-refresh-admin" id="btnAdminExport" title="Export Live Roster">
+            <span>📥 Export Roster CSV</span>
+          </button>
+        </div>
+
+        <div class="admin-centers-strip">
+          <div class="center-stat-chip">
+            <div class="chip-loc">Prayagraj (PMKK Teliarganj)</div>
+            <div class="chip-metric"><span class="highlight-emerald">35</span> / 40 Seats Available</div>
+            <div class="chip-bar"><span style="width: 87.5%;"></span></div>
+          </div>
+          <div class="center-stat-chip">
+            <div class="chip-loc">Varanasi (Govt ITI Karaundi)</div>
+            <div class="chip-metric"><span class="highlight-emerald">28</span> / 35 Seats Available</div>
+            <div class="chip-bar"><span style="width: 80%;"></span></div>
+          </div>
+          <div class="center-stat-chip">
+            <div class="chip-loc">Lucknow (NSTI Alambagh)</div>
+            <div class="chip-metric"><span class="highlight-emerald">42</span> / 50 Seats Available</div>
+            <div class="chip-bar"><span style="width: 84%;"></span></div>
+          </div>
+          <div class="center-stat-chip">
+            <div class="chip-loc">Gorakhpur (PMKK Asuran)</div>
+            <div class="chip-metric"><span class="highlight-emerald">24</span> / 30 Seats Available</div>
+            <div class="chip-bar"><span style="width: 80%;"></span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         3. MAIN INTERACTION WORKSPACE (TWO-COLUMN COMMAND LAYOUT)
+         ======================================================================= -->
+    <div class="workspace-split-layout">
+
+      <!-- =====================================================================
+           LEFT COLUMN: VOICE & CHAT INTERACTION CONSOLE
+           ===================================================================== -->
+      <section class="console-column" aria-label="Interactive Voice & Query Console">
+
+        <!-- Console Container Card -->
+        <div class="glass-console-card">
+
+          <!-- Card Header & Live Mode Subtitle -->
+          <div class="console-header">
+            <div class="console-title-wrap">
+              <div class="console-dot-indicator"></div>
+              <div>
+                <h2 class="console-heading" id="consoleHeading">आवाज से खोजें (Vernacular Voice Command)</h2>
+                <p class="console-subheading">बोलकर बताएं अपना नाम, काम और जिला — AI तुरंत सही योजना और केंद्र निकालेगा</p>
+              </div>
+            </div>
+            <span class="asr-badge" title="Web Speech API 'hi-IN'">Vernacular ASR</span>
+          </div>
+
+          <!-- Real-Time Extracted Entity Action Badges Ribbon -->
+          <div class="action-badges-ribbon" aria-label="Extracted Speech Entities">
+            <div class="action-chip" id="chipExtractedName" title="Candidate Name Detected">
+              <span class="chip-icon">👤</span>
+              <span class="chip-label">Name:</span>
+              <span class="chip-value" id="valExtractedName">Detecting...</span>
+            </div>
+            <div class="action-chip" id="chipExtractedIntent" title="Identified Welfare Need">
+              <span class="chip-icon">🎯</span>
+              <span class="chip-label">Intent:</span>
+              <span class="chip-value" id="valExtractedIntent">Skilling & GIA Grant</span>
+            </div>
+            <div class="action-chip" id="chipExtractedTrade" title="Mapped NSQF Trade">
+              <span class="chip-icon">🛠️</span>
+              <span class="chip-label">Target Trade:</span>
+              <span class="chip-value" id="valExtractedTrade">Awaiting Input</span>
+            </div>
+            <div class="action-chip" id="chipExtractedDistrict" title="Inferred District Hub">
+              <span class="chip-icon">📍</span>
+              <span class="chip-label">District:</span>
+              <span class="chip-value" id="valExtractedDistrict">Auto-detect</span>
+            </div>
+          </div>
+
+          <!-- Prominent Interactive Voice Mic Stage -->
+          <div class="voice-stage">
+            
+            <!-- Live Status Pill -->
+            <div class="voice-status-pill-wrap">
+              <div class="voice-status-pill ready" id="statusBadge" role="status" aria-live="polite">
+                <span class="status-indicator-icon" id="statusIcon">🎙️</span>
+                <span class="status-indicator-text" id="statusText">माइक दबाएं और बोलें (Tap to Speak)</span>
+              </div>
+            </div>
+
+            <!-- Pulsing Glowing Mic Button with Concentric Animated Rings -->
+            <div class="mic-cluster">
+              <div class="mic-radar-wave wave-1" id="micRadarWave1" aria-hidden="true"></div>
+              <div class="mic-radar-wave wave-2" id="micRadarWave2" aria-hidden="true"></div>
+              <div class="mic-pulse-ring" id="micPulseRing" aria-hidden="true"></div>
+              
+              <button type="button" class="command-mic-btn" id="micBtn" aria-label="माइक चालू करें और बोलें" title="क्लिक करें और हिंदी / भोजपुरी / हिंगलिश में बोलें">
+                <div class="mic-inner-halo"></div>
+                <svg class="mic-svg" id="micSvgIcon" viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3z"/>
+                  <path d="M17 11c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/>
+                </svg>
+              </button>
+            </div>
+
+            <!-- Real-Time Audio Waveform Canvas Visualizer -->
+            <div class="waveform-container" title="Audio Signal Visualizer (AnalyserNode)">
+              <canvas id="waveformCanvas" width="480" height="52"></canvas>
+            </div>
+
+            <!-- Recognized Speech Transcript Display (Hindi / English / Hinglish) -->
+            <div class="transcript-display-wrapper">
+              <div class="transcript-label-bar">
+                <span>Recognized Speech Transcript:</span>
+                <span class="confidence-badge" id="confidenceBadge">NLP Confidence: 95%</span>
+              </div>
+              <div class="transcript-bubble empty" id="transcriptBox" aria-live="polite">
+                "उदा: मेरा नाम रमेश है, मुझे दर्जी का काम सीखना है और मैं वाराणसी में रहता हूँ"
+              </div>
+            </div>
+
+            <!-- Text Query Chat Input Fallback Bar (Zero Barrier) -->
+            <div class="text-query-fallback-strip">
+              <form id="textQueryForm" class="query-form" onsubmit="return false;">
+                <div class="query-input-wrap">
+                  <span class="query-input-icon">⌨️</span>
+                  <input type="text" id="manualQueryInput" class="manual-query-input" placeholder="या यहाँ टाइप करें (e.g. Mera naam Ramesh hai, darzi ka kaam seekhna hai)..." autocomplete="off">
+                </div>
+                <button type="button" id="manualQuerySubmitBtn" class="btn-send-query">
+                  <span>विश्लेषण करें (Analyze)</span>
+                  <span class="send-arrow">➔</span>
+                </button>
+              </form>
+            </div>
+
+            <!-- Audio Output Control Bar (Listen Again / Stop Speech) -->
+            <div class="audio-controls-row" id="audioControlsBar">
+              <button type="button" class="btn-audio-ctrl" id="replaySpeechBtn" title="फिर से सुनें">
+                <span>🔊</span>
+                <span>फिर से सुनें (Replay Guidance)</span>
+              </button>
+              <button type="button" class="btn-audio-ctrl btn-audio-stop" id="stopSpeechBtn" title="आवाज रोकें">
+                <span>⏹️</span>
+                <span>रोकें (Stop Voice)</span>
+              </button>
+            </div>
+
+          </div>
+
+          <!-- Demo Quick-Pitch Scenario Pills for SIH Evaluators -->
+          <div class="demo-scenarios-zone">
+            <div class="demo-zone-header">
+              <span class="demo-tag">SIH Evaluator Pitch Demos</span>
+              <span class="demo-sub">One-click live scenarios to test instant NLP mapping:</span>
+            </div>
+            <div class="demo-pill-grid">
+              
+              <button type="button" class="demo-scenario-pill" data-speech="मेरा नाम राजू है, मैं प्रयागराज में चर्मकार लेदर वर्क का काम करता हूँ, मुझे सरकारी योजना और टूलकिट चाहिए">
+                <span class="pill-badge-icon">👞</span>
+                <div class="pill-info">
+                  <strong>Prayagraj · Leather Work</strong>
+                  <span>राजू (चर्मकार / जूते-चप्पल)</span>
+                </div>
+              </button>
+
+              <button type="button" class="demo-scenario-pill" data-speech="हमार नाम रमेश बा, हम बनारस में बुनकर हथकरघा के काम करीला, पीएम अजय योजना के जानकारी चाही">
+                <span class="pill-badge-icon">🧵</span>
+                <div class="pill-info">
+                  <strong>Varanasi · Handloom Weaving</strong>
+                  <span>रमेश (बुनकर / हथकरघा साड़ी)</span>
+                </div>
+              </button>
+
+              <button type="button" class="demo-scenario-pill" data-speech="मेरा नाम सुनीता है, मैं लखनऊ में दर्जी का काम सीखना चाहती हूँ, सिलाई मशीन अनुदान चाहिए">
+                <span class="pill-badge-icon">👗</span>
+                <div class="pill-info">
+                  <strong>Lucknow · Tailoring & Garments</strong>
+                  <span>सुनीता (दर्जी / सिलाई मशीन)</span>
+                </div>
+              </button>
+
+              <button type="button" class="demo-scenario-pill" data-speech="नमस्ते, मैं गोरखपुर में राजमिस्त्री भवन निर्माण का काम करता हूँ, मुझे पीएम अजय योजना और कौशल ट्रेनिंग चाहिए">
+                <span class="pill-badge-icon">🧱</span>
+                <div class="pill-info">
+                  <strong>Gorakhpur · Masonry Work</strong>
+                  <span>मनोज (राजमिस्त्री / निर्माण)</span>
+                </div>
+              </button>
+
+              <button type="button" class="demo-scenario-pill" data-speech="मेरा नाम अमित है, प्रयागराज में बिजली इलेक्ट्रीशियन का काम करता हूँ, सोलर पैनल ट्रेनिंग चाहिए">
+                <span class="pill-badge-icon">⚡</span>
+                <div class="pill-info">
+                  <strong>Prayagraj · Electrician & Solar</strong>
+                  <span>अमित (बिजली मैकेनिक / वायरमैन)</span>
+                </div>
+              </button>
+
+              <button type="button" class="demo-scenario-pill" data-speech="हमार नाम किशन बा, हम बनारस में कुम्हार के काम करिला, माटी के बर्तन और चाक खातिर मदद चाही">
+                <span class="pill-badge-icon">🏺</span>
+                <div class="pill-info">
+                  <strong>Varanasi · Pottery & Terracotta</strong>
+                  <span>किशन (कुम्हार / इलेक्ट्रिक चाक)</span>
+                </div>
+              </button>
+
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- =====================================================================
+           RIGHT COLUMN: RECOMMENDED TRADE & SCHEME DOSSIER CARD
+           ===================================================================== -->
+      <section class="dossier-column" aria-label="Recommended Trade & Scheme Dossier">
+
+        <div class="dossier-card-wrap">
+
+          <!-- Spoken Audio Guidance Banner -->
+          <div class="spoken-guidance-card">
+            <div class="spoken-speaker-badge">
+              <span class="speaker-wave-anim">📢</span>
+            </div>
+            <div class="spoken-body">
+              <div class="spoken-meta-row">
+                <span class="spoken-tag">आवाज में सरकारी परामर्श (Spoken Hindi Guidance)</span>
+                <span class="tts-badge" id="ttsActiveBadge">● TTS Audio Active</span>
+              </div>
+              <p class="spoken-text-content" id="spokenTranscriptOutput">
+                नमस्ते! सामाजिक न्याय एवं अधिकारिता मंत्रालय (MoSJE) के पीएम-अजय कौशल सेतु में आपका स्वागत है। बाएं दिए गए माइक बटन को दबाकर अपनी भाषा में बोलें।
+              </p>
+            </div>
+          </div>
+
+          <!-- Dynamic Candidate Assessment Dossier Header -->
+          <div class="candidate-summary-banner">
+            <div class="candidate-avatar">
+              <span id="candidateAvatarEmoji">👤</span>
+            </div>
+            <div class="candidate-details">
+              <div class="candidate-title-row">
+                <h3 class="candidate-name" id="candidateNameHeading">अभ्यर्थी: राजू कुमार (Raju Kumar)</h3>
+                <span class="application-id-tag" id="applicationIdTag">APPL-2026-UP-7192</span>
+              </div>
+              <div class="candidate-meta-chips">
+                <span class="badge-dbt-ready">✅ DBT Bank Linked</span>
+                <span class="badge-eligibility">MoSJE GIA Eligible (SC Artisan)</span>
+                <span class="badge-district" id="candidateDistrictChip">📍 Prayagraj Hub</span>
+              </div>
+            </div>
+            <div class="dossier-top-actions">
+              <button type="button" class="btn-print-slip" id="btnPrintSlipTop" title="Generate Formatted Official Slip">
+                <span>📄 Print Slip</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- SECTION 1: NSQF SKILL TRADE OVERVIEW -->
+          <article class="dossier-section-card" id="skillCard">
+            <div class="dossier-section-header">
+              <div class="section-title-wrap">
+                <div class="section-icon skill-icon">🛠️</div>
+                <div>
+                  <h4 class="section-heading">अनुशंसित कौशल ट्रेड (NSQF Skill Qualification)</h4>
+                  <span class="section-subtext" id="sscNameDisplay">Leather Sector Skill Council (LSSC)</span>
+                </div>
+              </div>
+              <span class="nsqf-level-badge" id="nsqfBadge">NSQF Level 4</span>
+            </div>
+
+            <!-- Trade Name Main Title -->
+            <div class="trade-title-row">
+              <h3 class="trade-name-hi" id="skillTradeName">चर्मकार / चमड़ा शिल्प व जूता निर्माण</h3>
+              <p class="trade-name-en" id="skillTradeNameEn">Charmakar / Leather Work & Footwear Artisan</p>
+            </div>
+
+            <!-- Trade Meta Grid -->
+            <div class="trade-meta-grid">
+              <div class="meta-box">
+                <span class="meta-label">Qualification Pack (QP)</span>
+                <strong class="meta-val highlight-amber" id="qpCodeBadge">LSS/Q2301</strong>
+              </div>
+              <div class="meta-box">
+                <span class="meta-label">Total Duration</span>
+                <strong class="meta-val" id="durationBadge">240 Hours</strong>
+              </div>
+              <div class="meta-box">
+                <span class="meta-label">Daily Training Stipend</span>
+                <strong class="meta-val highlight-emerald" id="stipendBadge">₹500 / Day</strong>
+              </div>
+              <div class="meta-box">
+                <span class="meta-label">Certification Nodal</span>
+                <strong class="meta-val">NCVET / Skill India</strong>
+              </div>
+            </div>
+
+            <!-- Curriculum Competencies Checklist -->
+            <div class="curriculum-container">
+              <div class="curriculum-header">
+                <span>प्रशिक्षण पाठ्यक्रम व मुख्य योग्यताएं (Core Competencies):</span>
+              </div>
+              <ul class="curriculum-checklist" id="curriculumList">
+                <li>चमड़ा ग्रेडिंग, सटीक कटिंग, स्टिचिंग व फिनिशिंग तकनीक</li>
+                <li>आधुनिक फुटवियर, सैंडल, लेदर बैग व बेल्ट निर्माण</li>
+                <li>इलेक्ट्रिक लेदर सीविंग व सोल पेस्टिंग मशीन का उपयोग</li>
+                <li>माइक्रो-एंटरप्राइज वर्कशॉप प्रबंधन, वित्तीय साक्षरता व ऑनलाइन ई-मार्केटप्लेस बिक्री</li>
+              </ul>
+            </div>
+
+            <!-- Toolkit Grant Highlight Strip -->
+            <div class="toolkit-entitlement-box">
+              <div class="toolkit-icon">🎁</div>
+              <div class="toolkit-content">
+                <span class="toolkit-tag">PM-AJAY 100% निःशुल्क टूलकिट पात्रता:</span>
+                <strong class="toolkit-name" id="toolkitName">आधुनिक चर्मकार टूलकिट एवं इलेक्ट्रिक लेदर सिलाई मशीन</strong>
+              </div>
+            </div>
+          </article>
+
+          <!-- SECTION 2: GOVERNMENT FINANCIAL SUPPORT & GIA SUBSIDY BREAKDOWN -->
+          <article class="dossier-section-card scheme-dossier-card" id="schemeCard">
+            <div class="dossier-section-header">
+              <div class="section-title-wrap">
+                <div class="section-icon scheme-icon">📜</div>
+                <div>
+                  <h4 class="section-heading">वित्तीय सहायता व सरकारी अनुदान (Financial Support)</h4>
+                  <span class="section-subtext">PM-AJAY (GIA Component) MoSJE & PM-Vishwakarma Convergence</span>
+                </div>
+              </div>
+              <span class="scheme-gia-badge">100% GIA अनुदान (No Loan)</span>
+            </div>
+
+            <!-- Highlighted Emerald Grant Container -->
+            <div class="grant-hero-banner">
+              <div class="grant-col-main">
+                <span class="grant-kicker">PM-AJAY सहायता अनुदान (Grants-in-Aid)</span>
+                <div class="grant-figure">
+                  <span class="currency">₹</span>50,000
+                  <span class="grant-sublabel">तक 100% टूलकिट व सूक्ष्म उद्यम अनुदान</span>
+                </div>
+                <p class="grant-explainer" id="grantDescText">
+                  अनुसूचित जाति (SC) कारीगरों हेतु सूक्ष्म उद्यम टूलकिट व कार्यशील पूंजी हेतु ₹50,000 तक का 100% सहायता अनुदान (शून्य ऋण भार, कोई वापसी नहीं) + 100% मुफ्त NSQF प्रशिक्षण व दैनिक स्टाइपेंड।
+                </p>
+              </div>
+              <div class="grant-col-badge">
+                <div class="zero-repayment-seal">
+                  <span>ZERO REPAYMENT</span>
+                  <strong>100% MoSJE GIA</strong>
+                </div>
+              </div>
+            </div>
+
+            <!-- Financial Benefits Grid -->
+            <div class="benefits-two-col-grid">
+              
+              <div class="benefit-item">
+                <div class="benefit-bullet">✓</div>
+                <div class="benefit-text">
+                  <strong>दैनिक प्रशिक्षण स्टाइपेंड:</strong>
+                  <span>₹500 / दिन (लगभग ₹15,000 कुल प्रशिक्षण अवधि हेतु DBT द्वारा सीधे बैंक खाते में)</span>
+                </div>
+              </div>
+
+              <div class="benefit-item">
+                <div class="benefit-bullet">✓</div>
+                <div class="benefit-text">
+                  <strong>100% निःशुल्क NSQF प्रशिक्षण:</strong>
+                  <span>अध्ययन सामग्री, सेफ्टी किट एवं परीक्षा शुल्क सामाजिक न्याय मंत्रालय द्वारा पूर्णतः वहन</span>
+                </div>
+              </div>
+
+              <div class="benefit-item">
+                <div class="benefit-bullet">✓</div>
+                <div class="benefit-text">
+                  <strong>PM-विश्वकर्मा टूलकिट ई-वाउचर:</strong>
+                  <span>₹15,000 का अतिरिक्त टूलकिट डिजिटल ई-वाउचर</span>
+                </div>
+              </div>
+
+              <div class="benefit-item">
+                <div class="benefit-bullet">✓</div>
+                <div class="benefit-text">
+                  <strong>रियायती ऋण सुविधा (यदि आवश्यक हो):</strong>
+                  <span>₹3,00,000 तक बिना गारंटी मात्र 5% ब्याज पर आसान सरकारी ऋण</span>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Required Documents Bar -->
+            <div class="documents-required-bar">
+              <div class="doc-icon">📁</div>
+              <div class="doc-info">
+                <strong>प्रवेश हेतु आवश्यक दस्तावेज:</strong>
+                <span>आधार कार्ड (बैंक से लिंक), जाति प्रमाण पत्र (SC), सक्रिय बैंक पासबुक, आय प्रमाण पत्र / राशन कार्ड</span>
+              </div>
+            </div>
+
+          </article>
+
+          <!-- SECTION 3: NEAREST LOCALIZED TRAINING CENTER -->
+          <article class="dossier-section-card center-dossier-card" id="centerCard">
+            <div class="dossier-section-header">
+              <div class="section-title-wrap">
+                <div class="section-icon center-icon">📍</div>
+                <div>
+                  <h4 class="section-heading">सत्यापित नजदीकी प्रशिक्षण केंद्र (Verified Skill Hub)</h4>
+                  <span class="section-subtext" id="centerDistrictName">Prayagraj Skill Hub · Physical Center</span>
+                </div>
+              </div>
+              <span class="live-seats-badge" id="centerSeatBadge">
+                <span class="seat-dot"></span>
+                <span id="seatsAvailableText">35 सीटें खाली</span>
+              </span>
+            </div>
+
+            <div class="center-title-row">
+              <h3 class="center-name" id="centerNameDisplay">प्रधानमंत्री कौशल केंद्र (PMKK) - प्रयागराज</h3>
+              <p class="center-address" id="centerAddressDisplay">
+                प्लॉट संख्या 42, तेलियरगंज रोड, निकट एमएनएनआईटी गेट, प्रयागराज, उत्तर प्रदेश - 211004
+              </p>
+            </div>
+
+            <!-- Center Meta Details Strip -->
+            <div class="center-meta-strip">
+              <div class="center-meta-cell">
+                <span class="meta-cell-label">नोडल अधिकारी:</span>
+                <strong class="meta-cell-val" id="contactPersonDisplay">श्री विमलेश त्रिपाठी</strong>
+              </div>
+              <div class="center-meta-cell">
+                <span class="meta-cell-label">दूरी व साधन:</span>
+                <strong class="meta-cell-val highlight-cyan" id="distanceHintDisplay">बस स्टैंड से 3.5 किमी</strong>
+              </div>
+              <div class="center-meta-cell">
+                <span class="meta-cell-label">आगामी नया बैच:</span>
+                <strong class="meta-cell-val highlight-emerald" id="nextBatchDisplay">10 अक्टूबर 2026</strong>
+              </div>
+              <div class="center-meta-cell">
+                <span class="meta-cell-label">समय:</span>
+                <strong class="meta-cell-val" id="operatingHoursDisplay">प्रातः 9:30 से सायं 5:30</strong>
+              </div>
+            </div>
+
+            <!-- Action Call Button -->
+            <div class="center-actions-row">
+              <a href="tel:05322408912" class="btn-call-center" id="callCenterBtn" title="सीधे केंद्र पर कॉल करें">
+                <span class="btn-call-icon">📞</span>
+                <span>सीधे केंद्र पर कॉल करें (Call Training Center)</span>
+              </a>
+              <button type="button" class="btn-copy-dossier" id="btnCopyDossier" title="Copy Details to Clipboard">
+                <span>📋 कॉपी करें (Copy)</span>
+              </button>
+            </div>
+
+          </article>
+
+          <!-- 4. ACTIONABLE DELIVERABLE BUTTON (PRINT SLIP) -->
+          <div class="action-deliverable-strip">
+            <button type="button" class="btn-download-slip" id="btnDownloadSlip" title="Download Official PM-AJAY Enrollment Slip">
+              <span class="slip-icon">📄</span>
+              <div class="slip-btn-text">
+                <span class="slip-title">Download / Print Scheme Enrollment Slip</span>
+                <span class="slip-sub">Generates official printable dossier with QR verification stamp & QP details</span>
+              </div>
+              <span class="slip-arrow">🖨️</span>
+            </button>
+          </div>
+
+        </div>
+
+      </section>
+
+    </div>
 
   </main>
 
-  <!-- Footer Section -->
-  <footer class="footer" role="contentinfo">
-    <p>
-      AI Voice Assistant for Livelihood - PM-AJAY (GIA Component) MoSJE · Smart India Hackathon PS 26097
-    </p>
-    <div class="footer-links">
-      <a href="https://socialjustice.gov.in/schemes/pm-ajay" target="_blank" rel="noopener">PM-AJAY MoSJE</a>
-      <a href="https://socialjustice.gov.in" target="_blank" rel="noopener">सामाजिक न्याय मंत्रालय</a>
-      <a href="https://skillindia.gov.in" target="_blank" rel="noopener">स्किल इंडिया</a>
+  <!-- =========================================================================
+       4. OFFICIAL FORMATTED PRINTABLE ENROLLMENT SLIP (MODAL & PRINT VIEW)
+       ========================================================================= -->
+  <div class="slip-modal-backdrop" id="slipModalBackdrop" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="slipModalTitle">
+    <div class="slip-modal-container">
+      
+      <!-- Modal Control Bar (Screen Only) -->
+      <div class="modal-control-bar screen-only">
+        <div class="modal-bar-info">
+          <span>Official Scheme Provisional Slip Preview (A4 Ready)</span>
+        </div>
+        <div class="modal-bar-actions">
+          <button type="button" class="btn-modal-print" id="btnExecutePrint">
+            <span>🖨️ Print Now / Save PDF</span>
+          </button>
+          <button type="button" class="btn-modal-close" id="btnCloseSlipModal" aria-label="Close modal">
+            <span>✕ Close</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Printable Slip Sheet (What prints on A4 paper) -->
+      <div class="printable-slip-sheet" id="printableSlipSheet">
+        
+        <!-- Document Watermark & Border Stamp -->
+        <div class="slip-watermark" aria-hidden="true">PM-AJAY MoSJE</div>
+
+        <!-- Document Header -->
+        <header class="slip-gov-header">
+          <div class="slip-header-emblem">🏛️</div>
+          <div class="slip-header-title-block">
+            <h3>GOVERNMENT OF INDIA · भारत सरकार</h3>
+            <h4>MINISTRY OF SOCIAL JUSTICE AND EMPOWERMENT (MoSJE)</h4>
+            <h5>सामाजिक न्याय एवं अधिकारिता मंत्रालय</h5>
+            <p>PM-AJAY (Pradhan Mantri Anusuchit Jaati Abhyuday Yojana) · GIA Component Skilling Mission</p>
+          </div>
+          <div class="slip-header-qr-preview">
+            <div id="slipHeaderQrPlaceholder" class="qr-box-small"></div>
+          </div>
+        </header>
+
+        <div class="slip-doc-banner">
+          <h2 id="slipModalTitle">PROVISIONAL BENEFICIARY SKILLING & GIA ALLOTMENT SLIP</h2>
+          <div class="slip-ref-meta">
+            <span>Enrollment Ref: <strong id="slipRefNumber">MoSJE/PMAJAY/2026/SLIP-84920</strong></span>
+            <span>Allotment Date: <strong id="slipIssuedDate">25-Sep-2026</strong></span>
+            <span>Status: <strong style="color: #059669;">PROVISIONALLY VERIFIED</strong></span>
+          </div>
+        </div>
+
+        <!-- Candidate Profile Table -->
+        <section class="slip-table-section">
+          <div class="slip-section-legend">1. BENEFICIARY PROFILE (आवेदक विवरण)</div>
+          <table class="slip-data-table">
+            <tbody>
+              <tr>
+                <td class="cell-label">Candidate Name / नाम:</td>
+                <td class="cell-val"><strong id="slipCandidateName">Raju Kumar (राजू कुमार)</strong></td>
+                <td class="cell-label">Category / समुदाय:</td>
+                <td class="cell-val">Scheduled Caste (SC) Artisan / Marginalized Laborer</td>
+              </tr>
+              <tr>
+                <td class="cell-label">Target District / जिला:</td>
+                <td class="cell-val" id="slipDistrict">Prayagraj, Uttar Pradesh</td>
+                <td class="cell-label">Aadhaar DBT Status:</td>
+                <td class="cell-val"><strong style="color: #059669;">VERIFIED (DBT Linked)</strong></td>
+              </tr>
+              <tr>
+                <td class="cell-label">Voice Interaction Ref:</td>
+                <td class="cell-val" id="slipQueryRef">"मेरा नाम राजू है, चर्मकार लेदर वर्क का काम करता हूँ"</td>
+                <td class="cell-label">NLP Fitment Score:</td>
+                <td class="cell-val"><strong id="slipConfidence">96.0% Match</strong></td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <!-- Allotted NSQF Skill Module Table -->
+        <section class="slip-table-section">
+          <div class="slip-section-legend">2. ALLOTTED NSQF SKILL QUALIFICATION (कौशल प्रशिक्षण ट्रेड)</div>
+          <table class="slip-data-table">
+            <tbody>
+              <tr>
+                <td class="cell-label">Trade Name / ट्रेड:</td>
+                <td class="cell-val" colspan="3">
+                  <strong id="slipTradeTitle">चर्मकार / चमड़ा शिल्प व जूता निर्माण (Charmakar / Leather Work Artisan)</strong>
+                </td>
+              </tr>
+              <tr>
+                <td class="cell-label">Qualification Pack (QP):</td>
+                <td class="cell-val"><strong id="slipQpCode">LSS/Q2301</strong></td>
+                <td class="cell-label">NSQF Level:</td>
+                <td class="cell-val"><strong id="slipNsqfLevel">NSQF Level 4</strong></td>
+              </tr>
+              <tr>
+                <td class="cell-label">Training Duration:</td>
+                <td class="cell-val" id="slipDuration">240 Hours (NSQF Compliant)</td>
+                <td class="cell-label">Sector Skill Council:</td>
+                <td class="cell-val" id="slipSsc">Leather Sector Skill Council (LSSC)</td>
+              </tr>
+              <tr>
+                <td class="cell-label">Certified Tool-Kit:</td>
+                <td class="cell-val" colspan="3" id="slipToolkit">
+                  आधुनिक चर्मकार टूलकिट एवं इलेक्ट्रिक लेदर सिलाई मशीन (100% Free Grant)
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <!-- Entitled Financial Support Breakdown -->
+        <section class="slip-table-section">
+          <div class="slip-section-legend">3. ENTITLED FINANCIAL ASSISTANCE & GIA GRANTS (वित्तीय लाभ)</div>
+          <table class="slip-data-table">
+            <tbody>
+              <tr>
+                <td class="cell-label">PM-AJAY GIA Grant:</td>
+                <td class="cell-val"><strong>Up to ₹50,000</strong> (100% Equipment & Micro-Enterprise Subsidy - Zero Loan)</td>
+              </tr>
+              <tr>
+                <td class="cell-label">Training Allowance:</td>
+                <td class="cell-val"><strong>₹500 / Day</strong> (Daily Stipend directly disbursed via Aadhaar DBT)</td>
+              </tr>
+              <tr>
+                <td class="cell-label">Course Fee & Study Kit:</td>
+                <td class="cell-val"><strong>100% Free</strong> (Funded by MoSJE Grants-in-Aid component)</td>
+              </tr>
+              <tr>
+                <td class="cell-label">PM-Vishwakarma Link:</td>
+                <td class="cell-val">Eligible for ₹15,000 E-Voucher + ₹3,00,000 Collateral-Free Credit @ 5%</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <!-- Allotted Training Center Table -->
+        <section class="slip-table-section">
+          <div class="slip-section-legend">4. DESIGNATED TRAINING CENTER & REPORTING HUB (कौशल केंद्र)</div>
+          <table class="slip-data-table">
+            <tbody>
+              <tr>
+                <td class="cell-label">Center Name / केंद्र:</td>
+                <td class="cell-val" colspan="3"><strong id="slipCenterName">प्रधानमंत्री कौशल केंद्र (PMKK) - प्रयागराज</strong></td>
+              </tr>
+              <tr>
+                <td class="cell-label">Center Address:</td>
+                <td class="cell-val" colspan="3" id="slipCenterAddress">
+                  प्लॉट संख्या 42, तेलियरगंज रोड, निकट एमएनएनआईटी गेट, प्रयागराज, उत्तर प्रदेश - 211004
+                </td>
+              </tr>
+              <tr>
+                <td class="cell-label">Nodal Contact Person:</td>
+                <td class="cell-val" id="slipContactPerson">श्री विमलेश त्रिपाठी</td>
+                <td class="cell-label">Center Helpline:</td>
+                <td class="cell-val" id="slipHelpline">+91-532-2408912</td>
+              </tr>
+              <tr>
+                <td class="cell-label">Reporting Batch Date:</td>
+                <td class="cell-val"><strong style="color: #059669;" id="slipBatchDate">10 अक्टूबर 2026</strong></td>
+                <td class="cell-label">Transit Landmark:</td>
+                <td class="cell-val" id="slipDistanceHint">बस स्टैंड से 3.5 किमी</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <!-- Verification Stamp & Official Signatures Row -->
+        <footer class="slip-footer-verification">
+          
+          <div class="qr-stamp-box">
+            <!-- Cryptographic SVG Verification QR Code -->
+            <svg class="official-qr-svg" viewBox="0 0 100 100" width="90" height="90" aria-label="Official Verification QR Code">
+              <rect width="100" height="100" fill="#ffffff" />
+              <!-- Outer Corners -->
+              <rect x="5" y="5" width="28" height="28" fill="#111827" />
+              <rect x="8" y="8" width="22" height="22" fill="#ffffff" />
+              <rect x="12" y="12" width="14" height="14" fill="#111827" />
+              
+              <rect x="67" y="5" width="28" height="28" fill="#111827" />
+              <rect x="70" y="8" width="22" height="22" fill="#ffffff" />
+              <rect x="74" y="12" width="14" height="14" fill="#111827" />
+              
+              <rect x="5" y="67" width="28" height="28" fill="#111827" />
+              <rect x="8" y="70" width="22" height="22" fill="#ffffff" />
+              <rect x="12" y="74" width="14" height="14" fill="#111827" />
+              
+              <!-- Pattern Grid Simulating Verified Hash -->
+              <rect x="38" y="8" width="6" height="6" fill="#111827" />
+              <rect x="48" y="8" width="6" height="6" fill="#111827" />
+              <rect x="40" y="20" width="8" height="6" fill="#111827" />
+              <rect x="52" y="20" width="8" height="6" fill="#111827" />
+              <rect x="38" y="38" width="24" height="24" fill="#111827" />
+              <rect x="42" y="42" width="16" height="16" fill="#ffffff" />
+              <rect x="46" y="46" width="8" height="8" fill="#111827" />
+              
+              <rect x="10" y="42" width="6" height="6" fill="#111827" />
+              <rect x="22" y="42" width="6" height="6" fill="#111827" />
+              <rect x="15" y="52" width="12" height="6" fill="#111827" />
+              
+              <rect x="70" y="42" width="10" height="6" fill="#111827" />
+              <rect x="84" y="42" width="6" height="6" fill="#111827" />
+              <rect x="72" y="52" width="16" height="6" fill="#111827" />
+              
+              <rect x="38" y="68" width="8" height="8" fill="#111827" />
+              <rect x="50" y="76" width="8" height="8" fill="#111827" />
+              <rect x="42" y="86" width="16" height="6" fill="#111827" />
+              <rect x="68" y="70" width="6" height="6" fill="#111827" />
+              <rect x="78" y="70" width="12" height="6" fill="#111827" />
+              <rect x="70" y="82" width="20" height="8" fill="#111827" />
+            </svg>
+            <div class="qr-caption">
+              <strong>OFFICIAL VERIFICATION CODE</strong>
+              <span>Scan to authenticate DBT grant & training allotment under MoSJE GIA guidelines.</span>
+            </div>
+          </div>
+
+          <div class="seal-signature-box">
+            <div class="official-seal-circle">
+              <span>MoSJE / GoI</span>
+              <strong>VERIFIED</strong>
+              <span>PM-AJAY</span>
+            </div>
+            <div class="sign-line">
+              <span class="sign-text">Authorized Nodal Officer</span>
+              <span class="sign-dept">State Directorate of Social Justice & Empowerment</span>
+            </div>
+          </div>
+
+        </footer>
+
+        <!-- Candidate Instructions -->
+        <div class="slip-instructions-box">
+          <strong>महत्वपूर्ण निर्देश (Important Instructions for Candidate):</strong>
+          <ol>
+            <li>कृपया केंद्र पर रिपोर्ट करते समय अपना मूल <strong>आधार कार्ड</strong>, <strong>जाति प्रमाण पत्र (SC)</strong> एवं <strong>बैंक पासबुक</strong> साथ लाएं।</li>
+            <li>प्रशिक्षण के दौरान दैनिक उपस्थिति बायोमेट्रिक प्रणाली पर दर्ज होगी, जिसके आधार पर ₹500/दिन स्टाइपेंड का भुगतान सीधे बैंक खाते में होगा।</li>
+            <li>प्रशिक्षण समाप्ति पर आयोजित NCVET मूल्यांकन उत्तीर्ण करने के बाद ₹50,000 टूलकिट अनुदान MoSJE द्वारा स्वीकृत किया जाएगा।</li>
+            <li>किसी भी असुविधा या सहायता के लिए MoSJE राष्ट्रीय टोल-फ्री हेल्पलाइन <strong>1800-11-2001</strong> पर संपर्क करें।</li>
+          </ol>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Toast Notification Feedback -->
+  <div class="toast-notification" id="toastNotification" role="alert" aria-live="assertive"></div>
+
+  <!-- =========================================================================
+       5. FOOTER SECTION
+       ========================================================================= -->
+  <footer class="portal-footer" role="contentinfo">
+    <div class="footer-container">
+      <div class="footer-brand-col">
+        <div class="footer-title">PM-AJAY Kaushal Setu AI · MoSJE Prototype</div>
+        <p>Smart India Hackathon Problem Statement SIH26097: "Voice Assistant for Livelihood" · Developed for Ministry of Social Justice and Empowerment.</p>
+      </div>
+      <div class="footer-links-col">
+        <a href="https://socialjustice.gov.in/schemes/pm-ajay" target="_blank" rel="noopener">PM-AJAY Portal</a>
+        <a href="https://socialjustice.gov.in" target="_blank" rel="noopener">सामाजिक न्याय मंत्रालय</a>
+        <a href="https://pmvishwakarma.gov.in" target="_blank" rel="noopener">PM-विश्वकर्मा</a>
+        <a href="https://skillindia.gov.in" target="_blank" rel="noopener">स्किल इंडिया</a>
+      </div>
     </div>
   </footer>
 

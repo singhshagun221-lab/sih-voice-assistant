@@ -85,6 +85,7 @@ NSQF_SKILL_MODULES: Dict[str, Dict[str, Any]] = {
     },
     "carpentry": {
         "id": "SKILL-CARP-04",
+        
         "trade_name_en": "Badhai / Carpentry",
         "trade_name_hi": "बढ़ई / काष्ठशिल्प (Carpentry)",
         "nsqf_level": 4,
